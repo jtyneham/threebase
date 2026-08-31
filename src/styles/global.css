@@ -348,6 +348,94 @@ footer {
   text-align: center;
 }
 
+.object-detail {
+  padding: clamp(2.5rem, 7vw, 6rem) var(--page-inline) clamp(4rem, 10vw, 8rem);
+}
+
+.object-detail__heading {
+  max-width: 52rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.object-detail__heading h1 {
+  max-width: 14ch;
+  font-size: clamp(2.8rem, 9vw, 7rem);
+}
+
+.object-detail__heading > p:not(.eyebrow) {
+  max-width: 42rem;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.object-viewer {
+  max-width: 92rem;
+  margin-inline: auto;
+}
+
+.object-stage {
+  position: relative;
+  height: clamp(22rem, 62svh, 48rem);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: #11130f;
+}
+
+.object-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+}
+
+.object-stage canvas:active {
+  cursor: grabbing;
+}
+
+.object-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.object-action {
+  min-height: 3rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #111;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.object-action--secondary {
+  border-color: var(--line);
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+.object-action:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.object-instructions,
+.object-status {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.object-status {
+  min-height: 1.5em;
+  color: var(--accent);
+}
+
 footer p {
   margin: 0;
 }

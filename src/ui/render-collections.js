@@ -18,7 +18,7 @@ function createEntry(entry) {
   if (entry.href) {
     const link = document.createElement('a');
     link.href = entry.href;
-    link.textContent = 'Open project';
+    link.textContent = entry.actionLabel ?? 'Open project';
     link.setAttribute('aria-label', `Open ${entry.title}`);
     article.append(link);
   }

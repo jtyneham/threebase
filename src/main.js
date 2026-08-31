@@ -1,10 +1,6 @@
-import './styles/global.css';
-import { playgroundEntries, objectEntries } from './content/catalog.js';
-import { initCollectionNavigation } from './ui/collection-navigation.js';
-import { renderCollections } from './ui/render-collections.js';
+import { initSiteShell } from './site-shell.js';
 
-renderCollections({ playgroundEntries, objectEntries });
-const disposeNavigation = initCollectionNavigation({ playgroundEntries, objectEntries });
+const disposeNavigation = initSiteShell();
 
 let disposed = false;
 let disposeExperience = () => {};

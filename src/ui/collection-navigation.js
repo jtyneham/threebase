@@ -5,7 +5,9 @@ function renderMenu(container, entries, emptyLabel, collectionPath) {
     ? entries.map((entry) => {
         const item = document.createElement('li');
         const link = document.createElement('a');
-        link.href = `${collectionPath}#${entry.id}`;
+        link.href = entry.path
+          ? `${collectionPath}${entry.path}`
+          : `${collectionPath}#${entry.id}`;
         link.textContent = entry.title;
         item.append(link);
         return item;

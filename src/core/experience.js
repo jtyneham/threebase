@@ -7,7 +7,7 @@ function setStatus(element, message) {
   if (element) element.textContent = message;
 }
 
-export function mountExperience({ canvas, statusElement, createScene }) {
+export function mountExperience({ canvas, statusElement, createScene, onReady }) {
   if (!canvas) return () => {};
 
   const quality = getQualityProfile();
@@ -27,11 +27,22 @@ export function mountExperience({ canvas, statusElement, createScene }) {
     return () => {};
   }
 
-  const sceneModule = createScene({ renderer, quality });
-  const loop = createRenderLoop(({ elapsed, delta }) => {
-    sceneModule.update?.({ elapsed, delta, reducedMotion: quality.reducedMotion });
-    renderer.render(sceneModule.scene, sceneModule.camera);
+  let requestSceneFrame = () => {};
+  const sceneModule = createScene({
+    renderer,
+    quality,
+    requestRender: () => requestSceneFrame(),
   });
+  const loop = createRenderLoop(({ elapsed, delta }) => {
+    const wantsAnotherFrame = sceneModule.update?.({
+      elapsed,
+      delta,
+      reducedMotion: quality.reducedMotion,
+    });
+    renderer.render(sceneModule.scene, sceneModule.camera);
+    if (wantsAnotherFrame) loop.invalidate();
+  });
+  requestSceneFrame = loop.invalidate;
 
   const stopResize = observeRendererSize({
     container: canvas.parentElement,
@@ -66,6 +77,7 @@ export function mountExperience({ canvas, statusElement, createScene }) {
   canvas.addEventListener('webglcontextrestored', handleContextRestored);
   loop.setContinuous(sceneModule.wantsContinuousRendering && !quality.reducedMotion);
   loop.invalidate();
+  onReady?.(sceneModule, loop.invalidate);
 
   return () => {
     stopResize();

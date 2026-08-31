@@ -13,6 +13,8 @@ Metadata is defined in `src/content/catalog.js` and rendered by `src/ui/render-c
 
 The homepage contains only the introductory hero. Playground and Object Lab are separate static pages so their future assets and experiences do not load on the landing page. The top navigation exposes title-only collection menus. Touch and click are the baseline interactions; hover is an optional desktop enhancement. Each menu shows registered entries and a stable “View all” link.
 
+Object Lab entries use independent HTML entry points. Their model, scene, and interaction modules are imported only by that page, so adding objects does not grow the homepage bundle. The Haller Pocket Knife is the first example under `src/objects/haller-pocket-knife/`.
+
 ## Page and rendering ownership
 
 Semantic HTML owns navigation, copy, collection entries, loading/error messages, and every essential interaction. Three.js enhances a region but must not be required to understand or navigate the site.

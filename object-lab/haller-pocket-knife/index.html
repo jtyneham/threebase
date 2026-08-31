@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta
+      name="description"
+      content="Inspect a procedural Three.js reconstruction of the Haller Pocket Knife."
+    />
+    <title>Haller Pocket Knife · Object Lab · Threebase</title>
+    <script type="module" src="../../src/objects/haller-pocket-knife/main.js"></script>
+  </head>
+  <body class="object-detail-page" data-base-path="../..">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="../../" aria-label="Threebase home">
+        <span class="brand__word">Threebase</span>
+        <img class="brand__mark" src="../../src/assets/enso.png" alt="" width="32" height="32" />
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li class="nav-item" data-nav-item>
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="playground-menu" data-nav-trigger>
+              Playground <span class="nav-trigger__icon" aria-hidden="true"></span>
+            </button>
+            <div class="nav-menu" id="playground-menu" data-nav-menu hidden>
+              <ul class="nav-menu__list" data-playground-menu></ul>
+              <a class="nav-menu__all" href="../../playground/">View all projects</a>
+            </div>
+          </li>
+          <li class="nav-item" data-nav-item>
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="object-lab-menu" data-nav-trigger>
+              Object Lab <span class="nav-trigger__icon" aria-hidden="true"></span>
+            </button>
+            <div class="nav-menu" id="object-lab-menu" data-nav-menu hidden>
+              <ul class="nav-menu__list" data-object-menu></ul>
+              <a class="nav-menu__all" href="../">View all objects</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="object-detail" aria-labelledby="object-title">
+        <div class="object-detail__heading">
+          <p class="eyebrow">Object Lab · Working reconstruction</p>
+          <h1 id="object-title">Haller Pocket Knife</h1>
+          <p>
+            Drag to inspect the knife from every side, then open its blade from the hinge.
+          </p>
+        </div>
+
+        <div class="object-viewer">
+          <div class="object-stage">
+            <canvas
+              data-object-scene
+              tabindex="0"
+              aria-label="Interactive 3D model of the Haller Pocket Knife"
+              aria-describedby="object-instructions"
+            ></canvas>
+          </div>
+          <div class="object-toolbar" aria-label="Object controls">
+            <button class="object-action" type="button" data-blade-toggle aria-pressed="false" disabled>
+              Open blade
+            </button>
+            <button class="object-action object-action--secondary" type="button" data-view-reset disabled>
+              Reset view
+            </button>
+          </div>
+          <p class="object-instructions" id="object-instructions">
+            Drag or swipe to rotate. Pinch or scroll to zoom. With the canvas focused,
+            use the arrow keys to rotate and Home to reset.
+          </p>
+          <p class="object-status" data-object-status role="status" aria-live="polite">
+            Loading interactive object…
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer><p><span aria-hidden="true">·</span> Threebase <span aria-hidden="true">·</span></p></footer>
+
+    <noscript>
+      <p class="noscript-message">JavaScript is required to inspect this interactive object.</p>
+    </noscript>
+  </body>
+</html>

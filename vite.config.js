@@ -10,6 +10,9 @@ export default defineConfig({
         home: fileURLToPath(new URL('./index.html', import.meta.url)),
         playground: fileURLToPath(new URL('./playground/index.html', import.meta.url)),
         objectLab: fileURLToPath(new URL('./object-lab/index.html', import.meta.url)),
+        hallerPocketKnife: fileURLToPath(
+          new URL('./object-lab/haller-pocket-knife/index.html', import.meta.url),
+        ),
       },
     },
   },

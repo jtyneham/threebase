@@ -21,4 +21,14 @@ export const playgroundEntries = [
   },
 ];
 
-export const objectEntries = [];
+export const objectEntries = [
+  {
+    id: 'haller-pocket-knife',
+    title: 'Haller Pocket Knife',
+    label: 'Interactive object',
+    description: 'A procedural folding knife with a blade that opens from its hinge.',
+    path: 'haller-pocket-knife/',
+    href: './haller-pocket-knife/',
+    actionLabel: 'Inspect object',
+  },
+];
