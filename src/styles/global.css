@@ -10,7 +10,7 @@
   --text: #f3f1e8;
   --muted: #aaa89d;
   --line: #34332d;
-  --accent: #d8ff5f;
+  --accent: #d8ff53;
   --page-inline: clamp(1rem, 4vw, 4rem);
   --header-height: 4.25rem;
 }
@@ -72,10 +72,25 @@ a {
 }
 
 .brand {
-  font-size: 1.05rem;
-  font-weight: 760;
-  letter-spacing: -0.03em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   text-decoration: none;
+}
+
+.brand__word {
+  font-family: Baskerville, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.brand__mark {
+  width: 1.8rem;
+  height: 1.8rem;
+  object-fit: contain;
 }
 
 .nav-list {
@@ -330,6 +345,7 @@ footer {
   padding: 2rem var(--page-inline);
   color: var(--muted);
   font-size: 0.85rem;
+  text-align: center;
 }
 
 footer p {
@@ -344,6 +360,35 @@ footer p {
   padding: 1rem;
   border: 1px solid var(--line);
   background: var(--surface-raised);
+}
+
+@media (max-width: 28rem) {
+  .site-header {
+    gap: 0.4rem;
+    padding-inline: 0.75rem;
+  }
+
+  .brand {
+    gap: 0.3rem;
+  }
+
+  .brand__word {
+    font-size: 1.1rem;
+  }
+
+  .brand__mark {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .nav-list {
+    gap: 0.5rem;
+  }
+
+  .nav-trigger {
+    gap: 0.25rem;
+    font-size: 0.72rem;
+  }
 }
 
 @media (min-width: 44rem) {
