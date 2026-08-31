@@ -111,7 +111,7 @@ a {
   background: none;
   color: var(--muted);
   font: inherit;
-  font-size: clamp(0.78rem, 2.8vw, 0.95rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   cursor: pointer;
   white-space: nowrap;
 }
@@ -387,7 +387,7 @@ footer p {
 
   .nav-trigger {
     gap: 0.25rem;
-    font-size: 0.72rem;
+    font-size: 1rem;
   }
 }
 
