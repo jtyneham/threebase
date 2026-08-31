@@ -87,90 +87,6 @@ a {
   list-style: none;
 }
 
-.nav-trigger {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.7rem 0;
-  border: 0;
-  background: none;
-  color: var(--muted);
-  font: inherit;
-  font-size: clamp(0.78rem, 2.8vw, 0.95rem);
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.nav-trigger__icon {
-  width: 0.42rem;
-  height: 0.42rem;
-  border-right: 1px solid currentColor;
-  border-bottom: 1px solid currentColor;
-  transform: translateY(-0.12rem) rotate(45deg);
-  transition: transform 160ms ease;
-}
-
-.nav-trigger[aria-expanded='true'] {
-  color: var(--text);
-}
-
-.nav-trigger[aria-expanded='true'] .nav-trigger__icon {
-  transform: translateY(0.1rem) rotate(225deg);
-}
-
-.nav-trigger:hover {
-  color: var(--text);
-}
-
-.nav-menu {
-  position: absolute;
-  z-index: 30;
-  top: 100%;
-  inset-inline: 0;
-  padding: 0.75rem var(--page-inline) 1rem;
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
-  box-shadow: 0 1.2rem 2rem rgb(0 0 0 / 0.28);
-}
-
-.nav-menu[hidden] {
-  display: none;
-}
-
-.nav-menu__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.nav-menu__list a,
-.nav-menu__empty,
-.nav-menu__all {
-  display: block;
-  padding: 0.72rem 0;
-  font-size: 0.95rem;
-  text-decoration: none;
-}
-
-.nav-menu__list a {
-  color: var(--text);
-}
-
-.nav-menu__list a:hover,
-.nav-menu__all:hover {
-  color: var(--accent);
-}
-
-.nav-menu__empty {
-  color: var(--muted);
-}
-
-.nav-menu__all {
-  margin-top: 0.35rem;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-}
-
 .nav-list a {
   color: var(--muted);
   font-size: clamp(0.78rem, 2.8vw, 0.95rem);
@@ -331,25 +247,6 @@ footer p {
 }
 
 @media (min-width: 44rem) {
-  .nav-item {
-    position: relative;
-  }
-
-  .nav-menu {
-    top: calc(100% + 0.45rem);
-    right: 0;
-    left: auto;
-    width: 15rem;
-    padding: 0.75rem 1rem 1rem;
-    border: 1px solid var(--line);
-    border-radius: 0.65rem;
-  }
-
-  .nav-item:first-child .nav-menu {
-    right: auto;
-    left: 0;
-  }
-
   .entry-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

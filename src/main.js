@@ -1,10 +1,8 @@
 import './styles/global.css';
 import { playgroundEntries, objectEntries } from './content/catalog.js';
-import { initCollectionNavigation } from './ui/collection-navigation.js';
 import { renderCollections } from './ui/render-collections.js';
 
 renderCollections({ playgroundEntries, objectEntries });
-const disposeNavigation = initCollectionNavigation({ playgroundEntries, objectEntries });
 
 let disposed = false;
 let disposeExperience = () => {};
@@ -33,7 +31,6 @@ window.addEventListener(
   'pagehide',
   () => {
     disposed = true;
-    disposeNavigation();
     disposeExperience();
   },
   { once: true },
