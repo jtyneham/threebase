@@ -1,6 +1,7 @@
 function createEntry(entry) {
   const article = document.createElement('article');
   article.className = 'entry-card';
+  article.id = entry.id;
 
   const label = document.createElement('p');
   label.className = 'entry-card__label';

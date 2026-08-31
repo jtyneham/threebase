@@ -11,6 +11,8 @@ The top-level collections are:
 
 Metadata is defined in `src/content/catalog.js` and rendered by `src/ui/render-collections.js`. Implementations belong in `src/experiments/` or `src/objects/`. A future entry may link to its own HTML entry point without converting the site into a client-side routed application.
 
+The top navigation exposes title-only collection menus. Touch and click are the baseline interactions; hover is an optional desktop enhancement. Each menu shows registered entries and a stable “View all” link, so it remains useful while individual collections grow.
+
 ## Page and rendering ownership
 
 Semantic HTML owns navigation, copy, collection entries, loading/error messages, and every essential interaction. Three.js enhances a region but must not be required to understand or navigate the site.
