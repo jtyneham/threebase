@@ -1,11 +1,11 @@
-function renderMenu(container, entries, emptyLabel) {
+function renderMenu(container, entries, emptyLabel, collectionPath) {
   if (!container) return;
 
   const items = entries.length
     ? entries.map((entry) => {
         const item = document.createElement('li');
         const link = document.createElement('a');
-        link.href = `#${entry.id}`;
+        link.href = `${collectionPath}#${entry.id}`;
         link.textContent = entry.title;
         item.append(link);
         return item;
@@ -27,9 +27,20 @@ function renderMenu(container, entries, emptyLabel) {
 export function initCollectionNavigation({ playgroundEntries, objectEntries }) {
   const controller = new AbortController();
   const { signal } = controller;
+  const basePath = document.body.dataset.basePath ?? '.';
 
-  renderMenu(document.querySelector('[data-playground-menu]'), playgroundEntries, 'No projects yet');
-  renderMenu(document.querySelector('[data-object-menu]'), objectEntries, 'No objects yet');
+  renderMenu(
+    document.querySelector('[data-playground-menu]'),
+    playgroundEntries,
+    'No projects yet',
+    `${basePath}/playground/`,
+  );
+  renderMenu(
+    document.querySelector('[data-object-menu]'),
+    objectEntries,
+    'No objects yet',
+    `${basePath}/object-lab/`,
+  );
 
   const navigation = document.querySelector('nav[aria-label="Primary navigation"]');
   const items = [...document.querySelectorAll('[data-nav-item]')];

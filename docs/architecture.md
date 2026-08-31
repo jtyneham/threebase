@@ -11,7 +11,7 @@ The top-level collections are:
 
 Metadata is defined in `src/content/catalog.js` and rendered by `src/ui/render-collections.js`. Implementations belong in `src/experiments/` or `src/objects/`. A future entry may link to its own HTML entry point without converting the site into a client-side routed application.
 
-The top navigation exposes title-only collection menus. Touch and click are the baseline interactions; hover is an optional desktop enhancement. Each menu shows registered entries and a stable “View all” link, so it remains useful while individual collections grow.
+The homepage contains only the introductory hero. Playground and Object Lab are separate static pages so their future assets and experiences do not load on the landing page. The top navigation exposes title-only collection menus. Touch and click are the baseline interactions; hover is an optional desktop enhancement. Each menu shows registered entries and a stable “View all” link.
 
 ## Page and rendering ownership
 

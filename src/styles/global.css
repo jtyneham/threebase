@@ -101,6 +101,22 @@ a {
   white-space: nowrap;
 }
 
+.home-page {
+  height: 100svh;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.home-page main {
+  min-height: 0;
+}
+
+.home-page .intro {
+  min-height: 0;
+  height: 100%;
+}
+
 .nav-trigger__icon {
   width: 0.42rem;
   height: 0.42rem;
@@ -336,7 +352,7 @@ footer p {
   }
 
   .nav-menu {
-    top: calc(100% + 0.45rem);
+    top: calc(100% - 1px);
     right: 0;
     left: auto;
     width: 15rem;
@@ -352,6 +368,16 @@ footer p {
 
   .entry-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-height: 32rem) {
+  .home-page {
+    height: auto;
+  }
+
+  .home-page .intro {
+    min-height: 32rem;
   }
 }
 

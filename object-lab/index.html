@@ -4,18 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark light" />
-    <meta
-      name="description"
-      content="Threebase — a playground for creative web experiments and procedural Three.js objects."
-    />
-    <title>Threebase</title>
-    <script type="module" src="./src/main.js"></script>
+    <meta name="description" content="Threebase Object Lab — real-life objects rebuilt in Three.js." />
+    <title>Object Lab · Threebase</title>
+    <script type="module" src="../src/main.js"></script>
   </head>
-  <body class="home-page" data-base-path=".">
+  <body class="collection-page" data-base-path="..">
     <a class="skip-link" href="#main-content">Skip to content</a>
-
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Threebase home">Threebase</a>
+      <a class="brand" href="../" aria-label="Threebase home">Threebase</a>
       <nav aria-label="Primary navigation">
         <ul class="nav-list">
           <li class="nav-item" data-nav-item>
@@ -24,7 +20,7 @@
             </button>
             <div class="nav-menu" id="playground-menu" data-nav-menu hidden>
               <ul class="nav-menu__list" data-playground-menu></ul>
-              <a class="nav-menu__all" href="./playground/">View all projects</a>
+              <a class="nav-menu__all" href="../playground/">View all projects</a>
             </div>
           </li>
           <li class="nav-item" data-nav-item>
@@ -33,38 +29,22 @@
             </button>
             <div class="nav-menu" id="object-lab-menu" data-nav-menu hidden>
               <ul class="nav-menu__list" data-object-menu></ul>
-              <a class="nav-menu__all" href="./object-lab/">View all objects</a>
+              <a class="nav-menu__all" href="./">View all objects</a>
             </div>
           </li>
         </ul>
       </nav>
     </header>
-
     <main id="main-content">
-      <section class="intro" id="top" aria-labelledby="intro-title">
-        <canvas class="scene-canvas" data-scene aria-hidden="true"></canvas>
-        <div class="intro-content">
-          <p class="eyebrow">Creative web experiments</p>
-          <h1 id="intro-title">A base for ideas with depth.</h1>
-          <p>
-            Layout studies, interactive websites, and everyday objects reconstructed
-            in Three.js. The first experiments are still being made.
-          </p>
-          <p class="scene-status" data-scene-status role="status" aria-live="polite"></p>
+      <section class="collection" aria-labelledby="object-lab-title">
+        <div class="section-heading">
+          <p class="eyebrow">Procedural reconstructions</p>
+          <h1 id="object-lab-title">Object Lab</h1>
+          <p>Objects from real life rebuilt as inspectable, code-generated Three.js forms.</p>
         </div>
+        <div class="entry-grid entry-grid--objects" data-object-list></div>
       </section>
-
     </main>
-
-    <footer>
-      <p>Threebase <span aria-hidden="true">·</span> Built to keep evolving.</p>
-    </footer>
-
-    <noscript>
-      <p class="noscript-message">
-        JavaScript is unavailable. The collections remain readable, but interactive
-        experiments require JavaScript.
-      </p>
-    </noscript>
+    <footer><p>Threebase <span aria-hidden="true">·</span> Built to keep evolving.</p></footer>
   </body>
 </html>
