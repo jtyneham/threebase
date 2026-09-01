@@ -31,4 +31,13 @@ export const objectEntries = [
     href: './haller-pocket-knife/',
     actionLabel: 'Inspect object',
   },
+  {
+    id: 'bic-mini-lighter',
+    title: 'BIC Mini Lighter',
+    label: 'Interactive object',
+    description: 'A procedural pocket lighter with a working striker and flame.',
+    path: 'bic-mini-lighter/',
+    href: './bic-mini-lighter/',
+    actionLabel: 'Inspect object',
+  },
 ];

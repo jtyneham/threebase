@@ -13,6 +13,9 @@ export default defineConfig({
         hallerPocketKnife: fileURLToPath(
           new URL('./object-lab/haller-pocket-knife/index.html', import.meta.url),
         ),
+        bicMiniLighter: fileURLToPath(
+          new URL('./object-lab/bic-mini-lighter/index.html', import.meta.url),
+        ),
       },
     },
   },
