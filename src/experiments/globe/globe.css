@@ -27,7 +27,7 @@
 .globe-heading h1 { font-size: 1.6rem; font-weight: 500; letter-spacing: -.055em; line-height: 1; margin: 0; }
 .globe-heading__dot { color: var(--accent); }
 .country-search { position: relative; pointer-events: auto; width: 100%; }
-.search-field { display: flex; align-items: center; gap: .65rem; height: 3.25rem; padding: 0 .95rem; border: 1px solid #ffffff26; border-radius: .85rem; background: var(--globe-panel-background); backdrop-filter: var(--globe-panel-blur); box-shadow: 0 5px 25px #0002; }
+.search-field { display: flex; align-items: center; gap: .65rem; height: 3.25rem; padding: 0 .95rem; border: 1px solid #ffffff26; border-radius: .85rem; background: rgb(14 25 38 / 50%); backdrop-filter: blur(2px); box-shadow: 0 5px 25px #0002; }
 .search-field:focus-within { border-color: #8eeaf399; box-shadow: 0 0 0 3px #8eeaf310; }
 .search-field > svg { width: 1.15rem; height: 1.15rem; color: #becdd9; flex-shrink: 0; }
 .globe-page svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
