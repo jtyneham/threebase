@@ -4,10 +4,12 @@ A mobile-first base for creative web experiments built with Three.js, HTML, CSS,
 
 Threebase has two collections:
 
-- **Playground** — website layout and styling experiments.
+- **Playground** — website experiments under **Websites**, and interactive explorations under **Misc**.
 - **Object Lab** — real-world references reconstructed as procedural Three.js objects.
 
-The foundation intentionally contains no visual experiment yet. Its transparent, event-driven Three.js scene exists only to verify renderer setup, resizing, context handling, and cleanup.
+**Globe**, under Playground → Misc, is a mobile-first Earth explorer with country selection, autocomplete, and locally bundled geographic data. Open `/playground/globe/` during development. Its renderer and geographic assets load only on that page.
+
+The homepage retains its lightweight, transparent, event-driven foundation scene.
 
 ## Development
 
@@ -39,3 +41,5 @@ src/objects/<object-slug>/
 Empty collections show an accessible placeholder automatically. Entries may add a `href` when their page is ready.
 
 See [docs/architecture.md](docs/architecture.md) for lifecycle contracts, performance policy, asset conventions, and future extension points.
+
+See [docs/globe.md](docs/globe.md) for Globe's data sources, refresh workflow, interaction design, and verification.

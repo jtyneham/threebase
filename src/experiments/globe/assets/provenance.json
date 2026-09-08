@@ -1,0 +1,45 @@
+{
+  "retrieved": "2026-09-08",
+  "sources": [
+    {
+      "name": "boundaries",
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_map_units.geojson",
+      "sha256": "b8d421aca6e9e08e8cdf09cc26af111cc3e0deba4fe915611d58ade71e8a4db0"
+    },
+    {
+      "name": "countryBoundaries",
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson",
+      "sha256": "3e458fc036ad0a66411f2c1e6cac49c5d7bfb81cb1123bc513b22511a2b7fdeb"
+    },
+    {
+      "name": "countries",
+      "url": "https://raw.githubusercontent.com/mledoze/countries/master/countries.json",
+      "sha256": "99b85dda36895c79caf72e191d035e4b9d82e811ee34f9ca15dfa67d7c561ba8"
+    },
+    {
+      "name": "populations",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?date=2024:2025&format=json&per_page=1000",
+      "sha256": "4e6ceef4ad54ef44f3c5bb7122f689738a98a2d2312e1394ce3cce8c4e505c53"
+    },
+    {
+      "name": "earth",
+      "url": "https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-blue-marble.jpg",
+      "sha256": "228deba2e4b600146bdcb6cfa359b8ead6aacc2b1c13550a29cd82824cfa1c01"
+    },
+    {
+      "name": "relief",
+      "url": "https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-topology.png",
+      "sha256": "839b12da2e4dd346b256cebae72e10c479a102c8980a22084c41275e4b9a0e12"
+    },
+    {
+      "name": "clouds",
+      "url": "https://raw.githubusercontent.com/vasturiano/globe.gl/master/example/clouds/clouds.png",
+      "sha256": "35c46d8b29651a99e482401f33ed752bf4625837435fb3a89bb0032f72b88a3a"
+    },
+    {
+      "name": "countriesLicense",
+      "url": "https://raw.githubusercontent.com/mledoze/countries/master/LICENSE",
+      "sha256": "a221a27af5e4ef5a9cecce097c718c28f1aaf7d368cb57c994aa447c68d9defc"
+    }
+  ]
+}

@@ -4,20 +4,33 @@ export const playgroundEntries = [
   {
     id: 'project-1',
     title: 'Project 1',
+    category: 'Websites',
     label: 'Planned',
     description: 'The first website experiment will live here.',
   },
   {
     id: 'project-2',
     title: 'Project 2',
+    category: 'Websites',
     label: 'Planned',
     description: 'Reserved for a future layout or interaction study.',
   },
   {
     id: 'project-3',
     title: 'Project 3',
+    category: 'Websites',
     label: 'Planned',
     description: 'Reserved for a future creative web experiment.',
+  },
+  {
+    id: 'globe',
+    title: 'Globe',
+    category: 'Misc',
+    label: 'Interactive atlas',
+    description: 'Explore Earth, discover countries and territories, and see the world from a new perspective.',
+    path: 'globe/',
+    href: './globe/',
+    actionLabel: 'Explore Earth',
   },
 ];
 

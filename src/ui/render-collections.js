@@ -37,6 +37,28 @@ function createEmptyState(message) {
 
 function renderList(container, entries, emptyMessage) {
   if (!container) return;
+  if (entries.some(entry => entry.category)) {
+    container.classList.add('entry-grid--grouped');
+    const groups = new Map();
+    for (const entry of entries) {
+      const category = entry.category ?? 'More';
+      if (!groups.has(category)) {
+        const section = document.createElement('section');
+        section.className = 'entry-group';
+        const heading = document.createElement('h2');
+        heading.id = `collection-${category.toLowerCase()}`;
+        heading.textContent = category;
+        section.setAttribute('aria-labelledby', heading.id);
+        const grid = document.createElement('div');
+        grid.className = 'entry-grid';
+        section.append(heading, grid);
+        groups.set(category, section);
+      }
+      groups.get(category).querySelector('.entry-grid').append(createEntry(entry));
+    }
+    container.replaceChildren(...groups.values());
+    return;
+  }
   container.replaceChildren(
     ...(entries.length ? entries.map(createEntry) : [createEmptyState(emptyMessage)]),
   );

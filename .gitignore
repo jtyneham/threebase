@@ -4,3 +4,4 @@ dist/
 *.local
 npm-debug.log*
 /.img2threejs/
+/.globe-cache/

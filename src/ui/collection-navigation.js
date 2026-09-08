@@ -23,7 +23,27 @@ function renderMenu(container, entries, emptyLabel, collectionPath) {
         })(),
       ];
 
-  container.replaceChildren(...items);
+  if (entries.some(entry => entry.category)) {
+    const groups = new Map();
+    entries.forEach((entry, index) => {
+      const category = entry.category ?? 'More';
+      if (!groups.has(category)) {
+        const group = document.createElement('li');
+        group.className = 'nav-menu__group';
+        const heading = document.createElement('span');
+        heading.className = 'nav-menu__heading';
+        heading.id = `${container.dataset.playgroundMenu !== undefined ? 'playground' : 'objects'}-group-${groups.size}`;
+        heading.textContent = category;
+        const list = document.createElement('ul');
+        list.className = 'nav-menu__list';
+        list.setAttribute('aria-labelledby', heading.id);
+        group.append(heading, list);
+        groups.set(category, group);
+      }
+      groups.get(category).querySelector('ul').append(items[index]);
+    });
+    container.replaceChildren(...groups.values());
+  } else container.replaceChildren(...items);
 }
 
 export function initCollectionNavigation({ playgroundEntries, objectEntries }) {

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#050b13" />
+    <meta name="description" content="Explore Earth in three dimensions. Discover countries and territories, search the world, and get to know the places that make it." />
+    <title>Globe · Threebase</title>
+    <script type="module" src="../../src/experiments/globe/main.js"></script>
+  </head>
+  <body class="globe-page" data-base-path="../..">
+    <a class="skip-link" href="#country-search">Skip to country search</a>
+    <header class="site-header">
+      <a class="brand" href="../../" aria-label="Threebase home">
+        <span class="brand__word">Threebase</span>
+        <img class="brand__mark" src="../../src/assets/enso.png" alt="" width="32" height="32" />
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li class="nav-item" data-nav-item>
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="playground-menu" data-nav-trigger>
+              Playground <span class="nav-trigger__icon" aria-hidden="true"></span>
+            </button>
+            <div class="nav-menu" id="playground-menu" data-nav-menu hidden>
+              <ul class="nav-menu__list" data-playground-menu></ul>
+              <a class="nav-menu__all" href="../">View all projects</a>
+            </div>
+          </li>
+          <li class="nav-item" data-nav-item>
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="object-lab-menu" data-nav-trigger>
+              Object Lab <span class="nav-trigger__icon" aria-hidden="true"></span>
+            </button>
+            <div class="nav-menu" id="object-lab-menu" data-nav-menu hidden>
+              <ul class="nav-menu__list" data-object-menu></ul>
+              <a class="nav-menu__all" href="../../object-lab/">View all objects</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="globe-workspace" id="main-content" aria-label="Interactive globe">
+      <div class="globe-stage" id="globe-stage" aria-label="Earth. Drag to rotate and pinch or scroll to zoom. Use country search for keyboard exploration."></div>
+      <div class="globe-topbar">
+        <div class="globe-heading">
+          <h1>Globe<span class="globe-heading__dot" aria-hidden="true">.</span></h1>
+        </div>
+        <div class="country-search" id="search-container">
+          <div class="search-field">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+            <label class="sr-only" for="country-search">Search countries and territories</label>
+            <input id="country-search" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="country-suggestions" aria-describedby="search-help" placeholder="Search countries and territories…" autocomplete="off" spellcheck="false" enterkeyhint="search" />
+            <button class="search-clear" type="button" aria-label="Clear search" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+            <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+          </div>
+          <div class="search-results" hidden>
+            <p class="search-results__label">Find your next perspective</p>
+            <ul id="country-suggestions" role="listbox" aria-label="Countries and territories"></ul>
+            <p class="search-empty" hidden>No places found. Try another name.</p>
+            <p class="search-help" id="search-help">Choose a place to explore <span aria-hidden="true">↵</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="globe-loading" role="status"><span class="globe-loading__orbit" aria-hidden="true"></span><span data-loading-text>Bringing Earth into view…</span></div>
+      <div class="globe-message" role="status" hidden></div>
+      <div class="globe-hover" aria-hidden="true" hidden></div>
+      <svg class="card-connector" aria-hidden="true"><path/><circle r="3"/></svg>
+      <section class="country-card" aria-labelledby="country-title" hidden>
+        <div class="country-card__handle" aria-hidden="true"></div>
+        <div class="country-card__header">
+          <span class="country-flag" aria-hidden="true"></span>
+          <div class="country-card__identity"><p class="country-region"></p><h2 id="country-title" tabindex="-1"></h2></div>
+          <button class="icon-button country-close" type="button" aria-label="Close country details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+        </div>
+        <p class="country-status"></p>
+        <dl class="country-facts"></dl>
+        <p class="country-note" hidden></p>
+        <div class="country-card__footer"><span class="country-coordinates"></span><button class="country-locate" type="button">Locate <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg></button></div>
+      </section>
+      <div class="globe-controls" role="group" aria-label="Globe controls">
+        <button class="icon-button" id="rotate-toggle" type="button" aria-label="Pause automatic rotation" aria-pressed="true" title="Automatic rotation"><svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg><svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z"/></svg></button>
+        <span class="control-divider"></span>
+        <button class="icon-button" id="zoom-in" type="button" aria-label="Zoom in" title="Zoom in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="icon-button" id="zoom-out" type="button" aria-label="Zoom out" title="Zoom out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+        <span class="control-divider"></span>
+        <button class="icon-button" id="reset-view" type="button" aria-label="Reset globe view" title="Reset view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6"/></svg></button>
+      </div>
+      <div class="globe-bottom-bar">
+        <p class="globe-instructions"><span class="status-dot" aria-hidden="true"></span><span class="touch-instructions">Drag to rotate · Pinch to zoom · Tap to explore</span><span class="mouse-instructions">Drag to rotate · Scroll to zoom · Click to explore</span></p>
+        <button class="sources-button" type="button">About & sources <span aria-hidden="true">↗</span></button>
+      </div>
+      <p class="sr-only" id="globe-announcement" role="status" aria-live="polite"></p>
+    </main>
+    <dialog class="globe-about" aria-labelledby="about-title">
+      <button class="icon-button about-close" type="button" aria-label="Close about"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      <p class="globe-about__eyebrow">THREEBASE / GLOBE</p><h2 id="about-title">A closer look at Earth.</h2>
+      <p>Explore <span data-place-count>countries and territories</span> by touching the globe or searching. Tiny places are easiest to find with search.</p>
+      <h3>A map, with context</h3>
+      <p>Boundaries follow Natural Earth’s generalized map units. They are for exploration, not navigation or legal use. Disputed borders and statuses are not resolved by this map; inclusion does not imply recognition.</p>
+      <h3>Data & imagery</h3>
+      <ul>
+        <li><a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer">Natural Earth</a> — public-domain boundaries and supplementary population estimates.</li>
+        <li><a href="https://data.worldbank.org/indicator/SP.POP.TOTL" target="_blank" rel="noreferrer">World Bank</a> — population estimates. Each card shows the available year; figures are not live.</li>
+        <li><a href="https://github.com/mledoze/countries" target="_blank" rel="noreferrer">Countries by mledoze</a> — names, capitals, languages and currencies (ODbL).</li>
+        <li><a href="https://visibleearth.nasa.gov/collection/1484/blue-marble" target="_blank" rel="noreferrer">NASA Blue Marble</a> — Earth imagery, distributed with <a href="https://github.com/vasturiano/three-globe" target="_blank" rel="noreferrer">Three Globe</a>. Cloud texture via <a href="https://github.com/turban/webgl-earth" target="_blank" rel="noreferrer">WebGL Earth</a>.</li>
+      </ul>
+      <p class="globe-about__fine">Data snapshot: <span data-snapshot-date></span>. Lighting and clouds are illustrative, not live weather. Some small islands have a location marker where this map has no outline.</p>
+    </dialog>
+    <noscript><p class="noscript-message">Globe needs JavaScript for search and the interactive Earth. You can still use the Threebase home and collection links.</p></noscript>
+  </body>
+</html>

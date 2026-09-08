@@ -187,6 +187,29 @@ a {
   color: var(--text);
 }
 
+.nav-menu__heading {
+  display: block;
+  padding: .45rem 0 .2rem;
+  color: var(--muted);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.nav-menu__group + .nav-menu__group {
+  margin-top: .45rem;
+  padding-top: .65rem;
+  border-top: 1px solid var(--line);
+}
+
+.nav-menu__group .nav-menu__list a { padding-inline-start: .5rem; }
+
+.entry-grid.entry-grid--grouped { display: block; }
+.entry-group + .entry-group { margin-top: 3rem; }
+.entry-group > h2 { font-size: 1.4rem; letter-spacing: -.025em; }
+.entry-group > .entry-grid { margin-top: 1rem; }
+
 .nav-menu__list a:hover,
 .nav-menu__all:hover {
   color: var(--accent);
