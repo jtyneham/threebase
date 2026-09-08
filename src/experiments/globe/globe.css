@@ -59,7 +59,7 @@
 .icon-button { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 0; border-radius: .55rem; background: none; color: #d6e4eb; flex-shrink: 0; }
 .icon-button svg { width: 1.2rem; height: 1.2rem; }
 .icon-button:hover { background: #ffffff0d; color: var(--accent); }
-.globe-controls { position: absolute; z-index: 2; display: flex; bottom: 5.2rem; left: 50%; transform: translateX(-50%); padding: .25rem; border: 1px solid #ffffff20; border-radius: .85rem; background: #0e1823dc; backdrop-filter: blur(16px); }
+.globe-controls { position: absolute; z-index: 2; display: flex; bottom: 5.2rem; left: 50%; translate: -50% 0; scale: .7; transform-origin: bottom center; padding: .25rem; border: 1px solid #ffffff20; border-radius: .85rem; background: rgb(14 24 35 / 50%); backdrop-filter: blur(2px); }
 .control-divider { align-self: center; width: 1px; height: 1.1rem; margin-inline: .15rem; background: var(--line); }
 #rotate-toggle[aria-pressed='true'] .play-icon, #rotate-toggle[aria-pressed='false'] .pause-icon { display: none; }
 #rotate-toggle[aria-pressed='true'] { color: var(--accent); }
@@ -70,7 +70,8 @@
 .sources-button { color: #93a6b8; background: none; border: 0; min-height: 2.75rem; padding: .5rem; font-size: .75rem !important; }
 .sources-button span { margin-left: .3rem; }
 .country-card { position: absolute; z-index: 4; bottom: 0; left: 0; right: 0; padding: .6rem 1.25rem max(.65rem, env(safe-area-inset-bottom)); max-height: min(53%, 29rem); overflow-y: auto; overscroll-behavior: contain; border: 1px solid #ffffff26; border-bottom: none; border-radius: 1.3rem 1.3rem 0 0; background: var(--globe-panel-background); box-shadow: 0 -12px 60px #0005; backdrop-filter: var(--globe-panel-blur); }
-.country-card__handle { width: 2rem; height: 3px; margin: 0 auto .65rem; border-radius: 4px; background: #74879977; }
+.country-card__handle { display: none; }
+.country-card__handle::after { content: ''; display: block; width: 2rem; height: 3px; border-radius: 4px; background: #a2b5c5; }
 .country-card__header { display: flex; align-items: center; gap: .7rem; }
 .country-flag { display: grid; place-items: center; min-width: 2.3rem; font-size: 1.8rem; }
 .country-card__identity { flex: 1; min-width: 0; }
@@ -87,7 +88,7 @@
 .country-coordinates { font: .6875rem ui-monospace, monospace; color: #8ca4b8; letter-spacing: .02em; }
 .country-locate { display: flex; align-items: center; gap: .4rem; min-height: 2.75rem; margin: -.3rem 0; padding: .5rem 0 .5rem .6rem; border: 0; background: none; color: var(--accent); font-size: .75rem !important; }
 .country-locate svg { width: 1rem; height: 1rem; }
-.globe-workspace.has-selection .globe-controls { bottom: calc(var(--card-height, 23rem) + .75rem); left: auto; right: .75rem; transform: none; }
+.globe-workspace.has-selection .globe-controls { bottom: calc(var(--card-height, 23rem) + .75rem); left: auto; right: .75rem; translate: none; transform-origin: bottom right; }
 .globe-workspace.has-selection .globe-bottom-bar { visibility: hidden; }
 .card-connector { display: none; }
 .globe-about { width: min(36rem, calc(100% - 2rem)); max-height: 85dvh; overflow: auto; padding: 2rem 1.4rem; border: 1px solid #ffffff25; border-radius: 1rem; background: #101b28; color: var(--text); }
@@ -107,7 +108,9 @@
 }
 @media (max-width: 47.99rem) {
   .country-card { padding: .55rem 1rem max(.4rem, env(safe-area-inset-bottom)); max-height: none; overflow: visible; border-radius: 1rem 1rem 0 0; }
-  .country-card__handle { display: none; }
+  .country-card__handle { display: grid; place-items: center; width: 4rem; height: 1.5rem; margin: -.4rem auto 0; padding: 0; border: 0; border-radius: .4rem; background: transparent; touch-action: none; cursor: grab; }
+  .country-card__handle:active { cursor: grabbing; }
+  .country-card__handle:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   .country-card__header { gap: .65rem; min-height: 2.75rem; }
   .country-flag { min-width: 1.8rem; font-size: 1.5rem; }
   .country-flag img { width: 1.8rem; height: 1.35rem; }
@@ -131,7 +134,7 @@
   .globe-topbar { top: 2rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; }
   .globe-heading h1 { font-size: 3.5rem; }
   .country-search { max-width: 24rem; }
-  .globe-controls, .globe-workspace.has-selection .globe-controls { bottom: 5.5rem; left: auto; right: var(--page-inline); transform: none; flex-direction: column; border-radius: .8rem; }
+  .globe-controls, .globe-workspace.has-selection .globe-controls { bottom: 5.5rem; left: auto; right: var(--page-inline); translate: none; transform-origin: bottom right; flex-direction: column; border-radius: .8rem; }
   .control-divider { width: 1.2rem; height: 1px; margin: .2rem 0; }
   .globe-bottom-bar { inset: auto var(--page-inline) 1rem; flex-direction: row; justify-content: space-between; }
   .globe-instructions { font-size: .75rem; gap: .65rem; }

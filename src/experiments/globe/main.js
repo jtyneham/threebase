@@ -25,6 +25,63 @@ let activeIndex = -1;
 let selected = null;
 let experience = null;
 let disposed = false;
+const cardHandle = $('.country-card__handle');
+let cardMotion = null;
+let cardDrag = null;
+let suppressHandleClick = false;
+
+function cancelCardMotion() {
+  cardMotion?.cancel();
+  cardMotion = null;
+  const pointerId = cardDrag?.id;
+  cardDrag = null;
+  if (pointerId != null && cardHandle.hasPointerCapture(pointerId)) cardHandle.releasePointerCapture(pointerId);
+  card.style.removeProperty('transform');
+}
+
+function animateCard(dismiss, offset = 0) {
+  cancelCardMotion();
+  if (card.hidden) return;
+  const motion = card.animate([
+    { transform: `translateY(${offset}px)` },
+    { transform: dismiss ? `translateY(${card.offsetHeight + 24}px)` : 'translateY(0)' },
+  ], { duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : dismiss ? 220 : 160, easing: 'ease-out', fill: 'forwards' });
+  cardMotion = motion;
+  motion.finished.then(() => {
+    if (cardMotion !== motion) return;
+    if (dismiss) closeCard();
+    else cancelCardMotion();
+  }).catch(() => {}); // A new selection, reset, or dismissal can cancel the motion.
+}
+
+cardHandle.addEventListener('pointerdown', event => {
+  if (!event.isPrimary || event.button !== 0) return;
+  cancelCardMotion();
+  suppressHandleClick = false;
+  cardDrag = { id: event.pointerId, y: event.clientY, offset: 0 };
+  cardHandle.setPointerCapture(event.pointerId);
+}, { signal });
+cardHandle.addEventListener('pointermove', event => {
+  if (cardDrag?.id !== event.pointerId) return;
+  cardDrag.offset = Math.max(0, event.clientY - cardDrag.y);
+  card.style.transform = `translateY(${cardDrag.offset}px)`;
+}, { signal });
+cardHandle.addEventListener('pointerup', event => {
+  if (cardDrag?.id !== event.pointerId) return;
+  const offset = Math.max(0, event.clientY - cardDrag.y);
+  suppressHandleClick = Math.abs(event.clientY - cardDrag.y) > 5;
+  animateCard(offset >= 45, offset);
+}, { signal });
+cardHandle.addEventListener('pointercancel', () => {
+  if (cardDrag) animateCard(false, cardDrag.offset);
+}, { signal });
+cardHandle.addEventListener('lostpointercapture', () => {
+  if (cardDrag) animateCard(false, cardDrag.offset);
+}, { signal });
+cardHandle.addEventListener('click', event => {
+  if (event.detail !== 0 && suppressHandleClick) { suppressHandleClick = false; return; }
+  animateCard(true);
+}, { signal });
 
 function announce(message) { announcement.textContent = message; }
 function closeSearch() {
@@ -82,6 +139,7 @@ function fact(label, value, detail) {
 }
 
 function selectCountry(country, { focus = false } = {}) {
+  cancelCardMotion();
   selected = country;
   closeSearch();
   search.value = ''; $('.search-clear').hidden = true;
@@ -112,6 +170,7 @@ function selectCountry(country, { focus = false } = {}) {
 }
 
 function closeCard() {
+  cancelCardMotion();
   if (card.hidden) return;
   const focusInside = card.contains(document.activeElement);
   const mobile = matchMedia('(max-width: 47.99rem)').matches;
@@ -186,6 +245,6 @@ async function start() {
 }
 start();
 
-function dispose() { disposed = true; controller.abort(); cardObserver.disconnect(); disposeShell(); experience?.dispose(); }
+function dispose() { disposed = true; cancelCardMotion(); controller.abort(); cardObserver.disconnect(); disposeShell(); experience?.dispose(); }
 window.addEventListener('pagehide', event => { if (!event.persisted) dispose(); });
 if (import.meta.hot) import.meta.hot.dispose(dispose);
