@@ -81,16 +81,6 @@ function fact(label, value, detail) {
   div.append(dt, dd); return div;
 }
 
-function fitMobileCard() {
-  card.classList.remove('country-card--compact');
-  if (card.hidden || !matchMedia('(max-width: 47.99rem)').matches) return;
-  // Keep readable text and every detail when an unusually long record cannot
-  // fit the 40% target even with the compact layout.
-  const targetHeight = document.documentElement.clientHeight * .4;
-  if (card.offsetHeight > targetHeight) card.classList.add('country-card--compact');
-}
-window.addEventListener('resize', fitMobileCard, { signal });
-
 function selectCountry(country, { focus = false } = {}) {
   selected = country;
   closeSearch();
@@ -115,7 +105,6 @@ function selectCountry(country, { focus = false } = {}) {
   $('.country-note').textContent = notes.join(' ');
   $('.country-coordinates').textContent = coordinatesLabel(country);
   card.hidden = false;
-  fitMobileCard();
   workspace.classList.add('has-selection');
   experience?.select(country);
   announce(`${country.name} selected. ${country.capital ? `Capital: ${country.capital}.` : ''}`);
