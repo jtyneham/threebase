@@ -98,6 +98,7 @@ export async function createGlobe({ container, card, connector, onSelect, onMess
   let selected = null, hovered = null, disposed = false, rotating = !reducedMotion.matches;
   let paused = false, contextLost = false, modalOpen = false, settleTimer = null;
   let initialView = true, width = 0, height = 0, scheduledFrame = 0;
+  let preserveViewOffset = false;
   const textures = [];
   const ownedObjects = [];
   const hoverLabel = container.parentElement.querySelector('.globe-hover');
@@ -174,13 +175,17 @@ export async function createGlobe({ container, card, connector, onSelect, onMess
     if (!width || !height) return;
     world.width(width).height(height);
     const narrow = width < 768;
+    if (!narrow) preserveViewOffset = false;
     const offsetY = narrow ? (selected ? -Math.min(card.offsetHeight * .48, height * .26) : 26) : 0;
-    world.globeOffset([selected && !narrow ? -width * .13 : 0, offsetY]);
+    // Dismissing a mobile card must not shift the globe, including on the
+    // subsequent card ResizeObserver callback.
+    if (!preserveViewOffset) world.globeOffset([selected && !narrow ? -width * .13 : 0, offsetY]);
     if (narrow) { card.style.removeProperty('left'); card.style.removeProperty('top'); card.style.removeProperty('right'); }
     if (initialView) world.pointOfView({ lat: 23, lng: 12, altitude: overviewAltitude() });
     queueCardPosition(); wake();
   }
-  function select(country) {
+  function select(country, { preserveView = false } = {}) {
+    preserveViewOffset = preserveView;
     selected = country; hovered = null; initialView = false;
     setRotation(false);
     hoverLabel.hidden = true;
@@ -200,6 +205,7 @@ export async function createGlobe({ container, card, connector, onSelect, onMess
     wake(duration + 350);
   }
   function reset() {
+    preserveViewOffset = false;
     selected = null; hovered = null; initialView = true;
     applyHighlights(); resize();
     world.pointOfView({ lat: 23, lng: 12, altitude: overviewAltitude() }, reducedMotion.matches ? 0 : 850);

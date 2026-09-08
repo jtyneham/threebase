@@ -74,11 +74,22 @@ function openSearch() {
 
 function fact(label, value, detail) {
   const div = document.createElement('div');
+  if (value.length > 70) div.classList.add('country-fact--wide');
   const dt = document.createElement('dt'); dt.textContent = label;
   const dd = document.createElement('dd'); dd.textContent = value;
   if (detail) { const small = document.createElement('small'); small.textContent = detail; dd.append(small); }
   div.append(dt, dd); return div;
 }
+
+function fitMobileCard() {
+  card.classList.remove('country-card--compact');
+  if (card.hidden || !matchMedia('(max-width: 47.99rem)').matches) return;
+  // Keep readable text and every detail when an unusually long record cannot
+  // fit the 40% target even with the compact layout.
+  const targetHeight = document.documentElement.clientHeight * .4;
+  if (card.offsetHeight > targetHeight) card.classList.add('country-card--compact');
+}
+window.addEventListener('resize', fitMobileCard, { signal });
 
 function selectCountry(country, { focus = false } = {}) {
   selected = country;
@@ -104,6 +115,7 @@ function selectCountry(country, { focus = false } = {}) {
   $('.country-note').textContent = notes.join(' ');
   $('.country-coordinates').textContent = coordinatesLabel(country);
   card.hidden = false;
+  fitMobileCard();
   workspace.classList.add('has-selection');
   experience?.select(country);
   announce(`${country.name} selected. ${country.capital ? `Capital: ${country.capital}.` : ''}`);
@@ -111,12 +123,14 @@ function selectCountry(country, { focus = false } = {}) {
 }
 
 function closeCard() {
+  if (card.hidden) return;
   const focusInside = card.contains(document.activeElement);
+  const mobile = matchMedia('(max-width: 47.99rem)').matches;
   selected = null;
   card.hidden = true;
   workspace.classList.remove('has-selection');
-  experience?.select(null);
-  if (focusInside) search.focus({ preventScroll: true });
+  experience?.select(null, { preserveView: mobile });
+  if (focusInside) (mobile ? workspace : search).focus({ preventScroll: true });
 }
 
 search.addEventListener('input', openSearch, { signal });
